@@ -1,32 +1,21 @@
-#include "main.h"
-
-#include <limits.h>
 #include <stdio.h>
+#include "main.h"
 
 int main(void)
 {
-    long l = (long)INT_MAX + 1024;
-    long m = (long)INT_MIN - 1024;
+ int len1, len2;
 
-    _printf("%d\n", 1024);
-    _printf("%d\n", -1024);
-    _printf("%d\n", 0);
-    _printf("%d\n", INT_MAX);
-    _printf("%d\n", INT_MIN);
-    _printf("%d\n", l);
-    _printf("%d\n", m);
+ len1 = _printf("Custom d: %d\n", 1234);
+ len2 = printf("Std    d: %d\n", 1234);
 
-    _printf("There is %d bytes in %d KB\n", 1024, 1);
-    _printf("%d - %d = %d\n", 1024, 2048, -1024);
-    _printf("%d + %d = %d\n", INT_MIN, INT_MAX, (INT_MIN + INT_MAX));
+ _printf("Length:[%d]\n", len1);
+ printf("Length:[%d]\n", len2);
 
-    _printf("%i\n", 1024);
-    _printf("%i\n", -1024);
-    _printf("%i\n", 0);
-    _printf("%i\n", INT_MAX);
-    _printf("%i\n", INT_MIN);
-    _printf("%i\n", l);
-    _printf("%i\n", m);
+ len1 = _printf("Custom i: %i\n", -5678);
+ len2 = printf("Std    i: %i\n", -5678);
 
-    return (0);
+ _printf("Length:[%d]\n", len1);
+ printf("Length:[%d]\n", len2);
+
+ return (0);
 }
