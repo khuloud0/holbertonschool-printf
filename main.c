@@ -1,21 +1,31 @@
 #include <stdio.h>
 #include "main.h"
 
+/**
+ * main - test the custom _printf function
+ * Return: Always 0
+ */
 int main(void)
 {
- int len1, len2;
+    int len, len2;
 
- len1 = _printf("Custom d: %d\n", 1234);
- len2 = printf("Std    d: %d\n", 1234);
+    len = _printf("Hello %s %c %d %i %%\n", "World", '!', -123, 456);
+    len2 = printf("Hello %s %c %d %i %%\n", "World", '!', -123, 456);
 
- _printf("Length:[%d]\n", len1);
- printf("Length:[%d]\n", len2);
+    _printf("Length:[%d]\n", len);
+    printf("Length:[%d]\n", len2);
 
- len1 = _printf("Custom i: %i\n", -5678);
- len2 = printf("Std    i: %i\n", -5678);
+    _printf("Character:[%c]\n", 'H');
+    printf("Character:[%c]\n", 'H');
 
- _printf("Length:[%d]\n", len1);
- printf("Length:[%d]\n", len2);
+    _printf("String:[%s]\n", "I am a string !");
+    printf("String:[%s]\n", "I am a string !");
 
- return (0);
+    _printf("Percent:[%%]\n");
+    printf("Percent:[%%]\n");
+
+    _printf("Unknown:[%r]\n");
+    printf("Unknown:[%r]\n");
+
+    return (0);
 }
