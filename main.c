@@ -1,31 +1,30 @@
+#include <limits.h>
 #include <stdio.h>
-#include "main.h"
 
-/**
- * main - test the custom _printf function
- * Return: Always 0
- */
 int main(void)
 {
-    int len, len2;
+    long l = (long)INT_MAX + 1024;
+    long m = (long)INT_MIN - 1024;
 
-    len = _printf("Hello %s %c %d %i %%\n", "World", '!', -123, 456);
-    len2 = printf("Hello %s %c %d %i %%\n", "World", '!', -123, 456);
+    _printf("%d\n", 1024);
+    _printf("%d\n", -1024);
+    _printf("%d\n", 0);
+    _printf("%d\n", INT_MAX);
+    _printf("%d\n", INT_MIN);
+    _printf("%d\n", l);
+    _printf("%d\n", m);
 
-    _printf("Length:[%d]\n", len);
-    printf("Length:[%d]\n", len2);
+    _printf("There is %d bytes in %d KB\n", 1024, 1);
+    _printf("%d - %d = %d\n", 1024, 2048, -1024);
+    _printf("%d + %d = %d\n", INT_MIN, INT_MAX, (INT_MIN + INT_MAX));
 
-    _printf("Character:[%c]\n", 'H');
-    printf("Character:[%c]\n", 'H');
-
-    _printf("String:[%s]\n", "I am a string !");
-    printf("String:[%s]\n", "I am a string !");
-
-    _printf("Percent:[%%]\n");
-    printf("Percent:[%%]\n");
-
-   // _printf("Unknown:[%r]\n");
-   // printf("Unknown:[%r]\n");
+    _printf("%i\n", 1024);
+    _printf("%i\n", -1024);
+    _printf("%i\n", 0);
+    _printf("%i\n", INT_MAX);
+    _printf("%i\n", INT_MIN);
+    _printf("%i\n", l);
+    _printf("%i\n", m);
 
     return (0);
 }
