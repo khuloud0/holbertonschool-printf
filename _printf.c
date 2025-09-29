@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * _printf - produces output according to a format
+ * @format: format string
+ * Return: number of characters printed
+ */
 int _printf(const char *format, ...)
 {
     va_list ap;
@@ -15,7 +20,7 @@ int _printf(const char *format, ...)
     };
 
     if (!format)
-        return -1;
+        return (-1);
 
     va_start(ap, format);
     while (format[i])
@@ -31,7 +36,7 @@ int _printf(const char *format, ...)
         if (!format[i])
         {
             va_end(ap);
-            return -1;
+            return (-1);
         }
 
         k = 0;
@@ -56,5 +61,5 @@ int _printf(const char *format, ...)
         i++;
     }
     va_end(ap);
-    return count;
+    return (count);
 }

@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "main.h"
 
+/**
+ * main - test the custom _printf function
+ * Return: Always 0
+ */
 int main(void)
 {
     int len, len2;
@@ -23,5 +27,5 @@ int main(void)
     _printf("Unknown:[%r]\n");
     printf("Unknown:[%r]\n");
 
-    return 0;
+    return (0);
 }
