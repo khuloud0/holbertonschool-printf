@@ -1,42 +1,12 @@
-.TH _PRINTF 3 "September 2025" "Holberton Project" "Library Functions Manual"
+.TH _PRINTF 3
 .SH NAME
-_printf \- custom implementation of printf function
+_printf \- custom printf function
 .SH SYNOPSIS
-.B #include "main.h"
-.PP
-.BI "int _printf(const char *format, ...);"
+.B int _printf(const char *format, ...);
 .SH DESCRIPTION
-The
-.B _printf()
-function produces output according to a format.
-It writes output to the standard output stream (stdout).
-
-The format string is composed of zero or more directives.
-Ordinary characters are copied to stdout.
-Conversion specifiers, introduced by the '%' character, are replaced with formatted values.
-
-Supported conversion specifiers:
-.IP \(bu 2
-%c : print a single character
-.IP \(bu 2
-%s : print a string of characters
-.IP \(bu 2
-%% : print a percent sign
-.IP \(bu 2
-%d : print a signed decimal integer
-.IP \(bu 2
-%i : print a signed decimal integer
+The _printf() function produces output according to a format string.
+It handles the following conversion specifiers: %c, %s, %%, %d, %i.
 .SH RETURN VALUE
-The
-.B _printf()
-function returns the number of characters printed (excluding the null byte).
-.SH EXAMPLES
-.nf
-_printf("Hello %s %c\\n", "World", '!');
-
-Output: Hello World !
-.fi
-.SH SEE ALSO
-printf(3)
+Returns the number of characters printed.
 .SH AUTHORS
-Khulood & Thekra
+Khulood and Thekra
