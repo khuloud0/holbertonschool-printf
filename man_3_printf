@@ -20,7 +20,26 @@ Prints a percent sign.
 .TP
 .B %d, %i
 Prints a signed integer in decimal notation.
+
+.SH FUNCTIONS
+.TP
+.B int print_char(va_list args)
+Helper function used by _printf to print a single character.
+.TP
+.B int print_string(va_list args)
+Helper function used by _printf to print a string of characters.
+.TP
+.B int print_int(va_list args)
+Helper function used by _printf to print an integer in decimal notation.
+.TP
+.B int print_percent(va_list args)
+Helper function used by _printf to print the percent sign.
+
 .SH RETURN VALUE
-The _printf function returns the number of characters printed (excluding the null byte).
+The
+.B _printf()
+function returns the number of characters printed (excluding the null byte).
+Helper functions return the number of characters printed for their specific type.
+
 .SH AUTHORS
 Khulood and Thekra
