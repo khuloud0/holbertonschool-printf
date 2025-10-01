@@ -21,6 +21,6 @@ Prints a percent sign.
 .B %d, %i
 Prints a signed integer in decimal notation.
 .SH RETURN VALUE
-The number of characters printed (excluding the null byte).
+The _printf function returns the number of characters printed (excluding the null byte).
 .SH AUTHORS
 Khulood and Thekra
