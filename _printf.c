@@ -1,91 +1,63 @@
 #include "main.h"
-#include <stdarg.h>
-#include <unistd.h>
 
 /**
- * flush_buffer - writes buffer to stdout and resets index
- * @buffer: the character buffer
- * @len: number of characters to write
+ * handle_specifier - checks and executes matching format specifier
+ * @c: specifier character
+ * @ap: argument list
+ * Return: number of characters printed
  */
-void flush_buffer(char *buffer, int *len)
+int handle_specifier(char c, va_list ap)
 {
-    write(1, buffer, *len);
-    *len = 0;
-}
+	int k = 0;
+	spec_t table[] = {
+		{'c', print_char}, {'s', print_string},
+		{'%', print_percent}, {'d', print_int},
+		{'i', print_int}, {'\0', NULL}
+	};
 
-/**
- * buffer_char - adds a character to the buffer and flushes if full
- * @buffer: character buffer
- * @len: pointer to current index in buffer
- * @c: character to add
- */
-void buffer_char(char *buffer, int *len, char c)
-{
-    if (*len >= 1024)
-        flush_buffer(buffer, len);
-
-    buffer[(*len)++] = c;
+	while (table[k].sp)
+	{
+		if (table[k].sp == c)
+			return (table[k].func(ap));
+		k++;
+	}
+	_putchar('%');
+	_putchar(c);
+	return (2);
 }
 
 /**
  * _printf - produces output according to a format
- * @format: character string
+ * @format: format string
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-    va_list args;
-    int i = 0, j, count = 0, buf_len = 0;
-    char buffer[1024];
-    fmt_spec_t specifiers[] = {
-        {'c', handle_char},
-        {'s', handle_string},
-        {'%', handle_percent},
-        {'d', handle_int},
-        {'i', handle_int},
-        {'u', handle_unsigned},
-        {'o', handle_octal},
-        {'x', handle_hex_lower},
-        {'X', handle_hex_upper},
-        {'\0', NULL}
-    };
+	va_list ap;
+	int i = 0;
+	int count = 0;
 
-    if (!format)
-        return (-1);
+	if (!format)
+		return (-1);
 
-    va_start(args, format);
-
-    while (format && format[i])
-    {
-        if (format[i] == '%' && format[i + 1])
-        {
-            i++;
-            j = 0;
-            while (specifiers[j].specifier)
-            {
-                if (format[i] == specifiers[j].specifier)
-                {
-                    count += specifiers[j].handler(args, buffer, &buf_len);
-                    break;
-                }
-                j++;
-            }
-            if (!specifiers[j].specifier)
-            {
-                buffer_char(buffer, &buf_len, '%');
-                buffer_char(buffer, &buf_len, format[i]);
-                count += 2;
-            }
-        }
-        else
-        {
-            buffer_char(buffer, &buf_len, format[i]);
-            count++;
-        }
-        i++;
-    }
-
-    flush_buffer(buffer, &buf_len);
-    va_end(args);
-    return count;
+	va_start(ap, format);
+	while (format[i])
+	{
+		if (format[i] != '%')
+		{
+			count += _putchar(format[i]);
+			i++;
+			continue;
+		}
+		i++;
+		if (!format[i])
+		{
+			va_end(ap);
+			return (-1);
+		}
+		count += handle_specifier(format[i], ap);
+		i++;
+	}
+	va_end(ap);
+	return (count);
 }

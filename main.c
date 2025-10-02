@@ -1,11 +1,21 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 
 int main(void)
 {
-    _printf("Unsigned: %u\n", 12345);
-    _printf("Octal: %o\n", 12345);
-    _printf("Hex lower: %x\n", 12345);
-    _printf("Hex upper: %X\n", 12345);
-    return 0;
+	int len1, len2;
+
+	len1 = _printf("Custom d: %d\n", 1234);
+	len2 = printf("Std    d: %d\n", 1234);
+
+	_printf("Length:[%d]\n", len1);
+	printf("Length:[%d]\n", len2);
+
+	len1 = _printf("Custom i: %i\n", -5678);
+	len2 = printf("Std    i: %i\n", -5678);
+
+	_printf("Length:[%d]\n", len1);
+	printf("Length:[%d]\n", len2);
+
+	return (0);
 }
